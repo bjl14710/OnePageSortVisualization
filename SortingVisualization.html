@@ -5,9 +5,9 @@
 		<title>Sorting Visualization</title>
 		<script src = "angular.min.js"></script>
 		<script src="SortingVisualization.js"></script>
-	
+	    <link rel="stylesheet" href="SortVisualization.css"/>
 	</head>
-		<body ng-app="multipleInputs" class="users-container" ng-controller="multipleInputsCtrl">
+	<body ng-app="multipleInputs" class="users-container" ng-controller="multipleInputsCtrl">
 			<button ng-click="addUser()" class="add-user">Add Number</button>
 			<section ng-repeat="user in users">
 				<span class="users-container-inputs">
@@ -17,10 +17,11 @@
 			</section>
 		</section>	
 		<button class="add-user" ng-click="findMax(user)">Max</button>
-		<button class="add-user" ng-click="BubbleSort()">Sort(bubble)</button>
 		<button class="add-user" ng-click="createArray(user)">create Array</button>
+		<br>
+		<button class="add-user" ng-click="BubbleSort()">Sort(bubble)</button>
 		<button class="add-user" ng-click="QuickStart()">QuickSort</button>
-		
+		<button class="add-user" ng-click="MergeSort()">MergeSort</button>
 		<br><br>
 		{{number}}
 		<br><br>
