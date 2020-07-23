@@ -31,13 +31,15 @@
 		$scope.sortedArray = [];
 		for(var i = 0; i < $scope.sizeOfInputs; i++)
 		{
-			var val = document.getElementsByClassName("users-container-inputs-text")[i].value;
+			var val = +document.getElementsByClassName("users-container-inputs-text")[i].value;
 			$scope.array.push(val); // setting the array
 		}
 	}
 	
 	$scope.number = 0;
 	$scope.index = 0;
+	
+	
 	$scope.SetNumber = function(user)
 	{
 		//var index = $scope.users.indexOf(user); // So it knows what number to set
@@ -45,7 +47,7 @@
 		
 		var val = document.getElementsByClassName("users-container-inputs-text")[$scope.index].value;
 		//var number = console.log($scope.users);
-		$scope.number = val;
+		$scope.number = +val;
 		
 		/*$scope.number.push(+val); // gets us the number
 		if($scope.number.length > 1) // saving this code for syntax
@@ -146,6 +148,45 @@
 				
 				return i;
 		}
+	}
+	
+	
+	$scope.MergeSort = function()
+	{
+			
+		function merge(left,right)
+		{
+			var arr = [];
+			
+			while(left.length && right.length)
+			{
+				if(left[0] < right[0])
+				{
+					arr.push(left.shift());
+				}
+				else
+				{
+					arr.push(right.shift());
+				}
+			}
+			
+			return arr.concat(left.slice().concat(right.slice()));
+		}
+		
+		function mergeSort(arr){
+			if(arr.length < 2)
+			{
+				return arr;
+			}
+			
+			const middle = Math.floor(arr.length/2);
+			const left = arr.slice(0,middle); // half the array
+			const right = arr.slice(middle);
+			
+			return merge(mergeSort(left), mergeSort(right));
+		}
+		
+		$scope.sortedArray = mergeSort($scope.array);
 	}
 	
 	
