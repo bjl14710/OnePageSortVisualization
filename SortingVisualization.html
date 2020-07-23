@@ -1,0 +1,26 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Sorting Visualization</title>
+		<script src = "angular.min.js"></script>
+		<script src="Sorting.js"></script>
+	
+	</head>
+		<body ng-app="multipleInputs" class="users-container" ng-controller="multipleInputsCtrl">
+			<button ng-click="addUser()" class="add-user">Add Number</button>
+			<section ng-repeat="user in users">
+				<span class="users-container-inputs">
+				<input class="users-container-inputs-text" type="number" placeholder="1"/>
+				<button class="users-container-inputs-button" ng-click="removeUser(user)">X</button>
+				<button class="add-user" ng-click="SetNumber(user)">Set</button>
+			</section>
+		</section>	
+		<button class="add-user" ng-click="findMax(user)">Max</button>
+		<br><br>
+		{{number}}
+		<br><br>
+		{{Max}}
+
+	</body>
+</html>
