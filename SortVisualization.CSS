@@ -1,0 +1,13 @@
+ *{
+	box-sizing: border-box;
+}
+
+input, button{
+	outline: none;
+}
+
+.users-container {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+}
