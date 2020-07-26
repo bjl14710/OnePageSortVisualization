@@ -155,9 +155,83 @@
 				{
 					$scope.array[i] = Num2;
 					$scope.array[i+1] = Num1; // switching the numbers 
+					renderGraph();
+					sleep(1000);
 				}
 			}
 		}
+		
+		
+		function renderGraph() 
+		{
+			
+			$scope.chart = new Highcharts.Chart({
+			chart: {
+				renderTo:'chartContainer',
+				type:'column'
+			},
+			title:{
+				text:'Chart Title'
+			},
+			credits:{enabled:false},
+			legend:{
+			},
+			plotOptions: {
+				series: {
+					shadow:false,
+					borderWidth:0,
+				}
+			},
+			xAxis:{
+				categories:[],
+				lineColor:'#999',
+				lineWidth:1,
+				tickColor:'#666',
+				tickLength:3,
+				title:{
+					text:'X Axis Title'
+				}
+			},
+			yAxis:{
+				min:0,
+				max:100,
+				startOnTick:false,
+				endOnTick:false,
+				tickInterval:5,
+				plotLines:[{
+					value:45,
+					width:1,
+					color:'#999'
+				}],
+				lineColor:'#999',
+				lineWidth:1,
+				tickColor:'#666',
+				tickWidth:1,
+				tickLength:3,
+				gridLineColor:'#ddd',
+				title:{
+					text:'Y Axis Title',
+					rotation:0,
+					margin:50,
+				}
+			},    
+			series: [{
+				data: $scope.array//[7,12,16,32,64]
+			}] 
+		});
+		}	
+		
+		
+		function sleep(milli)
+		{
+			const date = Date.now();
+			let currentDate = null;
+			do{
+				currentDate = Date.now();
+			} while(currentDate - date < milli);
+		}
+		
+		
 		$scope.sortedArray = $scope.array;
 		//$scope.array2 = []; // emptying the array
 	}
@@ -165,9 +239,20 @@
 	$scope.QuickStart = function()
 	{
 		$scope.sortedArray = QuickSort(0, $scope.array.length - 1, $scope.array);
+			
+		
+		
+		
 		function QuickSort(left,right,array) {
 			var index;
+			sleep(1000);
+		    renderGraph();
+		if($scope.Chart) // if chart is not null
+		{	
+			$scope.Chart.update(); 
+		}
 		
+	
 		if(array.length > 1)
 		{
 			index = partition(array, left, right);
@@ -209,16 +294,78 @@
 						j--;
 					}
 				}
-				
 				return i;
 		}
 		
-		if($scope.Chart)
-		{	
-			$scope.Chart.series[0].data = $scope.sortedArray;
-			$scope.Chart.update(); // this code updates it
-			$scope.Chart.renderTo('chartContainer');
+		function renderGraph() 
+		{
+			
+			$scope.chart = new Highcharts.Chart({
+			chart: {
+				renderTo:'chartContainer',
+				type:'column'
+			},
+			title:{
+				text:'Chart Title'
+			},
+			credits:{enabled:false},
+			legend:{
+			},
+			plotOptions: {
+				series: {
+					shadow:false,
+					borderWidth:0,
+				}
+			},
+			xAxis:{
+				categories:[],
+				lineColor:'#999',
+				lineWidth:1,
+				tickColor:'#666',
+				tickLength:3,
+				title:{
+					text:'X Axis Title'
+				}
+			},
+			yAxis:{
+				min:0,
+				max:100,
+				startOnTick:false,
+				endOnTick:false,
+				tickInterval:5,
+				plotLines:[{
+					value:45,
+					width:1,
+					color:'#999'
+				}],
+				lineColor:'#999',
+				lineWidth:1,
+				tickColor:'#666',
+				tickWidth:1,
+				tickLength:3,
+				gridLineColor:'#ddd',
+				title:{
+					text:'Y Axis Title',
+					rotation:0,
+					margin:50,
+				}
+			},    
+			series: [{
+				data: $scope.array//[7,12,16,32,64]
+			}] 
+		});
+		}	
+		
+		
+		function sleep(milli)
+		{
+			const date = Date.now();
+			let currentDate = null;
+			do{
+				currentDate = Date.now();
+			} while(currentDate - date < milli);
 		}
+		
 	}
 	
 	
@@ -257,6 +404,12 @@
 		}
 		
 		$scope.sortedArray = mergeSort($scope.array);
+	}
+	
+	
+	$scope.clearArray = function()
+	{
+		$scope.sortedArray = [];
 	}
 	
 	
